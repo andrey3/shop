@@ -23,6 +23,7 @@ $this->registerCssFile('public/nivo-slider.css', ['media' => 'screen']);
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+    <?= Html::csrfMetaTags() ?>
     <meta charset="<?= Yii::$app->charset ?>">
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
@@ -40,7 +41,11 @@ $this->registerCssFile('public/nivo-slider.css', ['media' => 'screen']);
             <div id="site_title"><h1><a href="#">Online Shoes Store</a></h1></div>
             <div id="header_right">
                 <p>
-                    <a href="#">My Account</a> | <a href="#">My Wishlist</a> | <a href="#">My Cart</a> | <a href="#">Checkout</a> | <a href="#">Log In</a></p>
+                    <?php if (Yii::$app->user->isGuest):?>
+                        <a href="http://web/index.php/sign/login/">Log In</a></p>
+                    <?php else:?>
+                        <a href="#">My Account</a> | <a href="#">My Wishlist</a> | <a href="#">My Cart</a> | <a href="#">Checkout</a> | <a href="http://web/index.php/sign/logout/">Log Out</a></p>
+                    <?php endif; ?>
                 <p>
                     Shopping Cart: <strong>3 items</strong> ( <a href="shoppingcart.html">Show Cart</a> )
                 </p>

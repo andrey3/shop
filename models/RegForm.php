@@ -27,21 +27,22 @@ class RegForm extends Model {
             ['address', 'string', 'min' => 4, 'max' => 255],
             ['email', 'unique',
                 'targetClass' => User::className(),
-                'message' => 'this email is already busy']
+                'message' => 'this email is already busy'],
+            [['name', 'email', 'address', 'phoneNumber', 'password'], 'safe']
         ];
     }
 
     public function reg() {
-        return false;
-//        $user = new User();
-//
-//        $user->name = $this->name;
-//        $user->email = $this->email;
-//        $user->address = $this->address;
-//        $user->phone_number = $this->phoneNumber;
-//        $user->setPassword($this->password);
-//        $user->generateAuthKey();
-//
-//        return $user->save() ? $user : null;
+
+        $user = new User();
+
+        $user->name = $this->name;
+        $user->email = $this->email;
+        $user->address = $this->address;
+        $user->phone_number = $this->phoneNumber;
+        $user->setPassword($this->password);
+        $user->generateAuthKey();
+
+        return $user->save() ? $user : null;
     }
 }

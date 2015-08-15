@@ -25,6 +25,7 @@ class SignController extends \yii\web\Controller {
                     return $this->goHome();
                 endif;
             else:
+                var_dump($model->getErrors());die;
                 Yii::$app->session->setFlash('error', 'Error sign up.');
                 Yii::error('Error sign up');
                 return $this->refresh();

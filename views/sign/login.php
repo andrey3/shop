@@ -17,7 +17,7 @@ use yii\widgets\ActiveForm;
 
         <div class="form-group">
             <?= Html::submitButton('Login', ['class' => 'btn btn-primary']) ?>
-            <a href="http://web/index.php/sign/reg">Sign Up</a>
+            <a href="/sign/reg">Sign Up</a>
         </div>
 
     <?php ActiveForm::end(); ?>

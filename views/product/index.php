@@ -13,11 +13,11 @@
     <?php foreach($products as $product): ?>
         <div class="product_box">
             <h3><?=$product->title;?></h3>
-            <a href="#"><img src="/images/products/<?=$product->image;?>"/></a>
+            <a href="/product/view/<?=$product->id?>"><img src="/images/products/<?=$product->image;?>"/></a>
             <p><?=$product->description;?></p>
             <p class="product_price">$ <?=$product->price;?></p>
             <a href="#" class="addtocart"></a>
-            <a href="http://web/index.php/product/view/<?=$product->id?>" class="detail"></a>
+            <a href="/product/view/<?=$product->id?>" class="detail"></a>
         </div>
     <?php endforeach;?>
 <?php else: ?>

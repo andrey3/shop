@@ -16,7 +16,7 @@ use app\components\CategoriesWidget;
 /* @var $content string */
 
 AppAsset::register($this);
-$this->registerCssFile('public/nivo-slider.css', ['media' => 'screen']);
+$this->registerCssFile('/public/nivo-slider.css', ['media' => 'screen']);
 ?>
 <?php $this->beginPage() ?>
 
@@ -42,7 +42,7 @@ $this->registerCssFile('public/nivo-slider.css', ['media' => 'screen']);
             <div id="header_right">
                 <p>
                     <?php if (Yii::$app->user->isGuest):?>
-                        <a href="http://web/index.php/sign/login/">Log In</a></p>
+                        <a href="/sign/login/">Log In</a></p>
                     <?php else:?>
                         <a href="#">My Account</a> | <a href="#">My Wishlist</a> | <a href="#">My Cart</a> | <a href="#">Checkout</a> | <a href="http://web/index.php/sign/logout/">Log Out</a></p>
                     <?php endif; ?>
@@ -57,7 +57,7 @@ $this->registerCssFile('public/nivo-slider.css', ['media' => 'screen']);
             <div id="top_nav" class="ddsmoothmenu">
                 <ul>
                     <li><a href="http://web" class="selected">Home</a></li>
-                    <li><a href="http://web/index.php/product/index/">Products</a>
+                    <li><a href="/product/index/">Products</a>
                         <ul>
                             <li><a href="#submenu1">Sub menu 1</a></li>
                             <li><a href="#submenu2">Sub menu 2</a></li>
@@ -96,25 +96,25 @@ $this->registerCssFile('public/nivo-slider.css', ['media' => 'screen']);
                     <h3>Bestsellers </h3>
                     <div class="content">
                         <div class="bs_box">
-                            <a href="#"><img src="public/images/templatemo_image_01.jpg" alt="image" /></a>
+                            <a href="#"><img src="/public/images/templatemo_image_01.jpg" alt="image" /></a>
                             <h4><a href="#">Donec nunc nisl</a></h4>
                             <p class="price">$10</p>
                             <div class="cleaner"></div>
                         </div>
                         <div class="bs_box">
-                            <a href="#"><img src="public/images/templatemo_image_01.jpg" alt="image" /></a>
+                            <a href="#"><img src="/public/images/templatemo_image_01.jpg" alt="image" /></a>
                             <h4><a href="#">Lorem ipsum dolor sit</a></h4>
                             <p class="price">$12</p>
                             <div class="cleaner"></div>
                         </div>
                         <div class="bs_box">
-                            <a href="#"><img src="public/images/templatemo_image_01.jpg" alt="image" /></a>
+                            <a href="#"><img src="/public/images/templatemo_image_01.jpg" alt="image" /></a>
                             <h4><a href="#">Phasellus ut dui</a></h4>
                             <p class="price">$20</p>
                             <div class="cleaner"></div>
                         </div>
                         <div class="bs_box">
-                            <a href="#"><img src="public/images/templatemo_image_01.jpg" alt="image" /></a>
+                            <a href="#"><img src="/public/images/templatemo_image_01.jpg" alt="image" /></a>
                             <h4><a href="#">Vestibulum ante</a></h4>
                             <p class="price">$8</p>
                             <div class="cleaner"></div>

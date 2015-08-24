@@ -44,10 +44,10 @@ $this->registerCssFile('/public/nivo-slider.css', ['media' => 'screen']);
                     <?php if (Yii::$app->user->isGuest):?>
                         <a href="/sign/login/">Log In</a></p>
                     <?php else:?>
-                        <a href="#">My Account</a> | <a href="#">My Wishlist</a> | <a href="#">My Cart</a> | <a href="#">Checkout</a> | <a href="http://web/index.php/sign/logout/">Log Out</a></p>
+                        <a href="/account/index/">My Account</a> | <a href="#">My Wishlist</a> | <a href="#">My Cart</a> | <a href="#">Checkout</a> | <a href="http://web/index.php/sign/logout/">Log Out</a></p>
                     <?php endif; ?>
                 <p>
-                    Shopping Cart: <strong>3 items</strong> ( <a href="shoppingcart.html">Show Cart</a> )
+                    Shopping Cart: <strong><?=count(Yii::$app->session['cart']);?> items</strong> ( <a href="/cart/index/">Show Cart</a> )
                 </p>
             </div>
             <div class="cleaner"></div>

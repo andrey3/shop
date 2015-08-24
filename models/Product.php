@@ -26,4 +26,9 @@ class Product extends \yii\db\ActiveRecord
         $product = self::find()->where(['category_id'=>$id])->all();
         return $product;
     }
+    public static function getNewProducts()
+    {
+        $products = self::find()->orderBy('id DESC')->limit(6)->all();
+        return $products;
+    }
 }

@@ -36,12 +36,12 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     public function rules()
     {
         return [
-            [['name', 'email', 'address', 'phone_number', 'password'], 'filter', 'filter' => 'trim'],
-            [['name', 'email', 'address', 'phone_number', 'password'], 'required'],
+            [['name', 'email', 'address', 'phone_number', 'password_hash'], 'filter', 'filter' => 'trim'],
+            [['name', 'email', 'address', 'phone_number', 'password_hash'], 'required'],
             ['email', 'email'],
             ['name', 'string', 'min' => 2, 'max' => 255],
             ['address', 'string', 'min' => 4, 'max' => 255],
-            ['password', 'required', 'on' => 'create'],
+            ['password_hash', 'required', 'on' => 'create'],
             ['email', 'unique', 'message' => 'this email is already busy']
 
         ];
@@ -76,6 +76,13 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     {
         return static::findOne([
             'name' => $name
+        ]);
+    }
+
+    public static function findByEmail($email)
+    {
+        return static::findOne([
+            'email' => $email
         ]);
     }
 

@@ -7,8 +7,10 @@
  */
 namespace app\models;
 
-use yii\base\Model;
+
 use Yii;
+use yii\base\Model;
+
 
 class RegForm extends Model {
     public $name;
@@ -43,6 +45,6 @@ class RegForm extends Model {
         $user->setPassword($this->password);
         $user->generateAuthKey();
 
-        return $user->save() ? $user : null;
+        return $user->save(false) && empty($this->getErrors()) ? $user : null;
     }
 }

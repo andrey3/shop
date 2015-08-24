@@ -27,6 +27,7 @@ class AppAsset extends AssetBundle
         "public/js/ddsmoothmenu.js",
         "public/js/jquery-1.4.3.min.js",
         "public/js/jquery.nivo.slider.pack.js",
+        "public/js/shoppingcartScript.js"
 
     ];
     public $depends = [

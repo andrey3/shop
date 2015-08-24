@@ -25,7 +25,7 @@ class SignController extends \yii\web\Controller {
                     return $this->goHome();
                 endif;
             else:
-                var_dump($model->getErrors());die;
+
                 Yii::$app->session->setFlash('error', 'Error sign up.');
                 Yii::error('Error sign up');
                 return $this->refresh();
@@ -40,6 +40,12 @@ class SignController extends \yii\web\Controller {
 
     public function actionLogin() {
 
+        if (!Yii::$app->user->isGuest):
+
+            return $this->goHome();
+
+        endif;
+
         $model = new LoginForm();
 
         if ($model->load(Yii::$app->request->post()) && $model->login()):
@@ -52,6 +58,13 @@ class SignController extends \yii\web\Controller {
             'login',
             ['model' => $model]
         );
+    }
+
+    public function actionLogout() {
+
+        Yii::$app->user->logout();
+        return $this->redirect(['/site/index/']);
+
     }
 
 }

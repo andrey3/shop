@@ -14,6 +14,7 @@ class LoginForm extends Model {
     public $email;
     public $password;
     public $rememberMe = true;
+    private $_user = false;
 
     public function rules() {
         return [
@@ -27,7 +28,10 @@ class LoginForm extends Model {
     public function validatePassword($attribute) {
         if (!$this->hasErrors()):
 
-            if ($this->password != '1234'):
+            $user = $this->getUser();
+
+
+            if (!$user || !$user->validatePassword($this->password)):
 
                 $this->addError($attribute, 'Incorrect email or password');
 
@@ -37,9 +41,19 @@ class LoginForm extends Model {
 
     }
 
+    public function getUser() {
+        if ($this->_user === false):
+
+            $this->_user = User::findByEmail($this->email);
+
+        endif;
+        return $this->_user;
+    }
+
     public function login() {
         if ($this->validate()):
-            return true;
+            $user = $this->getUser();
+            return Yii::$app->user->login($user, $this->rememberMe ? 3600*24*30 : 0);
         else:
             return false;
         endif;

@@ -29,6 +29,20 @@ class CartController  extends \yii\web\Controller
     public function actionAdd($id)
     {
         Cart::add($id);
-        return $this->goHome();
+        $url = Yii::$app->urlManager->createUrl('cart/index');
+        Yii::$app->getResponse()->redirect($url);
+    }
+
+    public function actionDelete($id)
+    {
+        Cart::delete($id);
+        $url = Yii::$app->urlManager->createUrl('cart/index');
+        Yii::$app->getResponse()->redirect($url);
+    }
+
+    public function actionUpdate() {
+        Cart::update();
+        $url = Yii::$app->urlManager->createUrl('cart/index');
+        Yii::$app->getResponse()->redirect($url);
     }
 }

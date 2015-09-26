@@ -1,30 +1,36 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: andrey
- * Date: 12.08.15
- * Time: 14:31
- */
 
-namespace app\controllers;
+namespace app\modules\admin\controllers;
 
-
-use Yii;
+use yii\web\Controller;
+use app\models\User;
 use app\models\EditForm;
+use Yii;
 
-class AccountController extends \yii\web\Controller {
 
-    public function actionIndex() {
-
-        $user = Yii::$app->user->getIdentity();
-        return $this->render('account', ['user'=>$user]);
-
+class UserController extends Controller
+{
+    public function actionIndex()
+    {
+        $users = User::getAll();
+        return $this->render('index', ['users' => $users]);
     }
 
-    public function actionEdit() {
+    public function actionDelete($id)
+    {
+        $result = User::deleteAll("id = $id");
+        if (!$result) {
+            Yii::$app->session->setFlash('delete_error', 'Error user delete.');
+            Yii::error('Error user delete');
+        }
+        $url = Yii::$app->urlManager->createUrl('admin/user/index');
+        Yii::$app->getResponse()->redirect($url);
 
+    }
+    public function actionEdit($id) {
         $model = new EditForm();
-        $user = Yii::$app->user->getIdentity();
+        $user = User::findById($id);
+
         if ($model->load(Yii::$app->request->post()) && $model->validate()):
             if ($model->edit($user->id)):
                 $url = Yii::$app->urlManager->createUrl('account/index');
@@ -44,5 +50,4 @@ class AccountController extends \yii\web\Controller {
             ]
         );
     }
-
 }

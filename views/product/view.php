@@ -34,7 +34,7 @@
                 </table>
                 <div class="cleaner h20"></div>
 
-                <a href="shoppingcart.html" class="addtocart"></a>
+                <a href="/cart/add/<?=$product->id?>" class="addtocart"></a>
 
 			</div>
             <div class="cleaner h30"></div>

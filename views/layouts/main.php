@@ -9,6 +9,7 @@ use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
+use yii\helpers\Url;
 
 use app\components\CategoriesWidget;
 
@@ -25,7 +26,6 @@ $this->registerCssFile('/public/nivo-slider.css', ['media' => 'screen']);
 <head>
     <?= Html::csrfMetaTags() ?>
     <meta charset="<?= Yii::$app->charset ?>">
-    <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
 
@@ -42,12 +42,12 @@ $this->registerCssFile('/public/nivo-slider.css', ['media' => 'screen']);
             <div id="header_right">
                 <p>
                     <?php if (Yii::$app->user->isGuest):?>
-                        <a href="/sign/login/">Log In</a></p>
+                        <a href="<?= Url::toRoute('/sign/login') ?>">Log In</a> | <a href="<?= Url::toRoute('/sign/reg') ?>">Sign Up</a></p>
                     <?php else:?>
-                        <a href="/account/index/">My Account</a> | <a href="#">My Wishlist</a> | <a href="#">My Cart</a> | <a href="#">Checkout</a> | <a href="http://web/index.php/sign/logout/">Log Out</a></p>
+                        <a href="<?= Url::toRoute('/account/index/') ?>">My Account</a> | <a href="#">My Wishlist</a> | <a href="#">Checkout</a> | <a href="<?= Url::toRoute('/sign/logout') ?>">Log Out</a></p>
                     <?php endif; ?>
                 <p>
-                    Shopping Cart: <strong><?=count(Yii::$app->session['cart']);?> items</strong> ( <a href="/cart/index/">Show Cart</a> )
+                    Shopping Cart: <strong><?=count(Yii::$app->session['cart']);?> items</strong> ( <a href="<?= Url::toRoute('/cart/index') ?>">Show Cart</a> )
                 </p>
             </div>
             <div class="cleaner"></div>

@@ -86,6 +86,19 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
         ]);
     }
 
+    public static function findById($id)
+    {
+        return static::findOne([
+            'id' => $id
+        ]);
+    }
+
+    public static function getAll()
+    {
+        $users = self::find()->all();
+        return $users;
+    }
+
 
     public function setPassword($password)
     {

@@ -46,9 +46,19 @@ $config = [
                     'pattern' => '<controller>/<action>/<id:\d+>',
                     'route' => '<controller>/<action>',
                     'suffix' => '',
+                ],
+                [
+                    'pattern' => '<module>/<controller>/<action>/<id:\d+>',
+                    'route' => '<module>/<controller>/<action>',
+                    'suffix' => '',
                 ]
             ],
         ]
+    ],
+    'modules' => [
+        'admin' => [
+            'class' => 'app\modules\admin\AdminModule',
+        ],
     ],
     'params' => $params,
 ];

@@ -2,11 +2,55 @@
 
 namespace app\models;
 
+use Yii;
+use yii\behaviors\TimestampBehavior;
+
+/**
+ * This is the model class for table "products".
+ *
+ * @property integer $id
+ * @property string $title
+ * @property string $description
+ * @property string $image
+ * @property integer $price
+ * @property integer $category_id
+ */
+
 class Product extends \yii\db\ActiveRecord
 {
     public static function tableName()
     {
         return 'products';
+    }
+
+    public function rules()
+    {
+        return [
+            [['title', 'description', 'price', 'image', 'categoryId'], 'filter', 'filter' => 'trim'],
+            [['title', 'description', 'price', 'image', 'categoryId'], 'required'],
+            ['title', 'string', 'min' => 4, 'max' => 255],
+            ['description', 'string', 'min' => 4, 'max' => 255],
+            ['title', 'unique', 'message' => 'this title is already busy'],
+        ];
+    }
+
+    public function attributeLabels()
+    {
+        return [
+            'id' => 'ID',
+            'title' => 'Title',
+            'description' => 'Description',
+            'image' => 'Image',
+            'price' => 'Price',
+            'category_id' => 'Category ID',
+        ];
+    }
+
+    public function behaviors()
+    {
+        return [
+            TimestampBehavior::className()
+        ];
     }
 
     public static function getAll()

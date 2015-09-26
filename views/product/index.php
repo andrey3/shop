@@ -16,7 +16,7 @@
             <a href="/product/view/<?=$product->id?>"><img src="/images/products/<?=$product->image;?>"/></a>
             <p><?=$product->description;?></p>
             <p class="product_price">$ <?=$product->price;?></p>
-            <a href="#" class="addtocart"></a>
+            <a href="/cart/add/<?=$product->id?>" class="addtocart"></a>
             <a href="/product/view/<?=$product->id?>" class="detail"></a>
         </div>
     <?php endforeach;?>

@@ -52,7 +52,7 @@ echo $this->registerJsFile('@web/public/js/shoppingcartScript.js', ['position' =
     </form>
     <div style="float:right; width: 215px; margin-top: 20px;">
 
-        <p><a href="checkout.html">Proceed to checkout</a></p>
+        <p><a href="<?= Url::toRoute('/checkout/proceed-to-checkout'); ?>">Proceed to checkout</a></p>
         <p><a href="javascript:history.back()">Continue shopping</a></p>
 
     </div>

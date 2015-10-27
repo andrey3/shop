@@ -30,6 +30,11 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
         return 'users';
     }
 
+    public function getOrders()
+    {
+        return $this->hasMany(Order::className(), ['user_id' => 'id']);
+    }
+
     /**
      * @inheritdoc
      */

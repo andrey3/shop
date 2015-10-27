@@ -21,6 +21,11 @@ class SignController extends \yii\web\Controller {
         if ($model->load(Yii::$app->request->post()) && $model->validate()):
 
             if ($user=$model->reg()):
+
+                $auth = Yii::$app->authManager;
+                $adminRole = $auth->getRole('user');
+                $auth->assign($adminRole, $user->getId());
+
                 if (Yii::$app->getUser()->login($user)):
                     return $this->goHome();
                 endif;

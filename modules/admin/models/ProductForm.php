@@ -17,14 +17,15 @@ class ProductForm extends Model {
 
     public function rules() {
         return [
-            [['title', 'description', 'price', 'image', 'categoryId'], 'filter', 'filter' => 'trim'],
-            [['title', 'description', 'price', 'image', 'categoryId'], 'required'],
+            [['title', 'description', 'price', 'categoryId'], 'filter', 'filter' => 'trim'],
+            [['title', 'description', 'image', 'price', 'categoryId'], 'required'],
             ['title', 'string', 'min' => 4, 'max' => 255],
             ['description', 'string', 'min' => 4, 'max' => 255],
-            ['title', 'unique',
-                'targetClass' => Product::className(),
-                'message' => 'this title is already busy'],
-            [['title', 'description', 'price', 'image', 'categoryId'], 'safe']
+            //[['image'], 'image', 'types' => 'png, jpg'],
+//            ['title', 'unique',
+//                'targetClass' => Product::className(),
+//                'message' => 'this title is already busy'],
+            [['title', 'description', 'image', 'price', 'categoryId'], 'safe']
         ];
     }
 

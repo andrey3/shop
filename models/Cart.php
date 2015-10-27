@@ -31,6 +31,13 @@ class Cart extends Model {
         endif;
     }
 
+    public static function deleteAll() {
+        $session = Yii::$app->session;
+        if (isset($session['cart'])):
+            unset($session['cart']);
+        endif;
+    }
+
     public static function update() {
         $post = Yii::$app->request->post('Form');
         foreach ($post as $key=>$value):

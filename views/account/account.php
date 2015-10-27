@@ -10,4 +10,4 @@ use yii\helpers\Url;
 <p>Address: <?=$user->address?></p>
 <p>Phone: <?=$user->phone_number?></p>
 
-<a href="<?= Url::toRoute('/account/edit') ?>">Edit</a>
+<a href="<?= Url::toRoute('/account/edit/'.$user->id) ?>">Edit</a>

@@ -27,6 +27,10 @@ $this->registerCssFile('/public/nivo-slider.css', ['media' => 'screen']);
     <?= Html::csrfMetaTags() ?>
     <meta charset="<?= Yii::$app->charset ?>">
     <title><?= Html::encode($this->title) ?></title>
+
+    <script>UPLOADCARE_PUBLIC_KEY = "demopublickey";</script>
+    <script src="https://ucarecdn.com/widget/2.5.5/uploadcare/uploadcare.full.min.js" charset="utf-8"></script>
+
     <?php $this->head() ?>
 
 </head>
@@ -44,7 +48,14 @@ $this->registerCssFile('/public/nivo-slider.css', ['media' => 'screen']);
                     <?php if (Yii::$app->user->isGuest):?>
                         <a href="<?= Url::toRoute('/sign/login') ?>">Log In</a> | <a href="<?= Url::toRoute('/sign/reg') ?>">Sign Up</a></p>
                     <?php else:?>
-                        <a href="<?= Url::toRoute('/account/index/') ?>">My Account</a> | <a href="#">My Wishlist</a> | <a href="#">Checkout</a> | <a href="<?= Url::toRoute('/sign/logout') ?>">Log Out</a></p>
+                        <?php
+                            $role = Yii::$app->authManager->getRolesByUser(Yii::$app->user->identity->id);
+                            if (isset($role['admin'])):
+                        ?>
+                        <a href="<?= Url::toRoute('/admin/product/index') ?>">Manage products</a> | <a href="<?= Url::toRoute('/admin/user/index  ') ?>">Manage users</a> | <a href="<?= Url::toRoute('/admin/order/index  ') ?>">Manage orders</a> | <a href="<?= Url::toRoute('/sign/logout') ?>">Log Out</a>
+                        <?php else:?>
+                            <a href="<?= Url::toRoute('/account/index/') ?>">My Account</a> | <a href="<?= Url::toRoute('/account/my-wishlist/') ?>">My Wishlist</a> | <a href="<?= Url::toRoute('/sign/logout') ?>">Log Out</a></p>
+                        <?php endif;?>
                     <?php endif; ?>
                 <p>
                     Shopping Cart: <strong><?=count(Yii::$app->session['cart']);?> items</strong> ( <a href="<?= Url::toRoute('/cart/index') ?>">Show Cart</a> )
@@ -57,22 +68,8 @@ $this->registerCssFile('/public/nivo-slider.css', ['media' => 'screen']);
             <div id="top_nav" class="ddsmoothmenu">
                 <ul>
                     <li><a href="http://web" class="selected">Home</a></li>
-                    <li><a href="/product/index/">Products</a>
-                        <ul>
-                            <li><a href="#submenu1">Sub menu 1</a></li>
-                            <li><a href="#submenu2">Sub menu 2</a></li>
-                            <li><a href="#submenu3">Sub menu 3</a></li>
-                            <li><a href="#submenu4">Sub menu 4</a></li>
-                            <li><a href="#submenu5">Sub menu 5</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="about.html">About</a>
-                        <ul>
-                            <li><a href="#submenu1">Sub menu 1</a></li>
-                            <li><a href="#submenu2">Sub menu 2</a></li>
-                            <li><a href="#submenu3">Sub menu 3</a></li>
-                        </ul>
-                    </li>
+                    <li><a href="/product/index/">Products</a></li>
+                    <li><a href="about.html">About</a></li>
                     <li><a href="faqs.html">FAQs</a></li>
                     <li><a href="checkout.html">Checkout</a></li>
                     <li><a href="contact.html">Contact Us</a></li>

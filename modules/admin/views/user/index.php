@@ -17,7 +17,7 @@ use yii\helpers\Url;
                 <th>email</th>
                 <th>address</th>
                 <th>phone</th>
-                <th></th>
+                <th><a href="<?= Url::toRoute("/admin/user/reg") ?>">New user</a></th>
                 <th></th>
             </thead>
     <?php foreach($users as $user): ?>

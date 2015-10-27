@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $model \app\modules\admin\models\ProductForm
@@ -15,7 +16,9 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'title')->textInput(['value' => $product->title]); ?>
     <?php $model->description = $product->description;?>
     <?= $form->field($model, 'description')->textarea(); ?>
-    <?= $form->field($model, 'image')->fileInput(); ?>
+    <div><img src="<?= URL::to("@web/images/products/$product->image")?>"></div>
+
+    <input type="hidden" role="uploadcare-uploader" name="image" />
     <?= $form->field($model, 'price')->textInput(['value' => $product->price]); ?>
     <?= $form->field($model, 'categoryId')->textInput(['value' => $product->category_id]); ?>
 

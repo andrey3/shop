@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "b1cc6c8c161c72bb689cfba0d4e1fd86",
+    "hash": "037b8888c9d49e945ccb2aaf3599096e",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -178,6 +178,46 @@
                     "package.json"
                 ]
             }
+        },
+        {
+            "name": "bower-asset/uploadcare",
+            "version": "2.5.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/uploadcare/uploadcare-bower.git",
+                "reference": "97cc01a6972b172cbcb4da6bca3d1e300f7bd37a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/uploadcare/uploadcare-bower/zipball/97cc01a6972b172cbcb4da6bca3d1e300f7bd37a",
+                "reference": "97cc01a6972b172cbcb4da6bca3d1e300f7bd37a",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/jquery": ">=1.10.2"
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": "uploadcare.min.js",
+                "bower-asset-ignore": [
+                    "**/.*",
+                    "node_modules",
+                    "bower_components",
+                    "test",
+                    "tests"
+                ]
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "HTML5 widget for uploading files from different sources, with image preview, crop and resize capabilities.",
+            "keywords": [
+                "cdn",
+                "crop",
+                "image",
+                "upload",
+                "widget"
+            ]
         },
         {
             "name": "bower-asset/yii2-pjax",

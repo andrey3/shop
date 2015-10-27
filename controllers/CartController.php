@@ -22,7 +22,6 @@ class CartController  extends \yii\web\Controller
         } else {
             $products = false;
         }
-
         return $this->render('index', ['products'=>$products]);
     }
 

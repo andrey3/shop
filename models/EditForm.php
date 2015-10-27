@@ -18,6 +18,7 @@ class EditForm extends Model {
     public $email;
     public $address;
     public $phoneNumber;
+    public $oldAttributes;
 
     public function rules() {
         return [
@@ -30,7 +31,7 @@ class EditForm extends Model {
                 'targetClass' => User::className(),
                 'message' => 'this email is already busy',
                 'when' => function($model) {
-                return Yii::$app->user->getIdentity()->email != $model->email; },
+                return $model->oldAttributes['email'] != $model->email; },
             ],
             [['name', 'email', 'address', 'phoneNumber'], 'safe']
         ];
@@ -46,5 +47,13 @@ class EditForm extends Model {
         $user->phone_number = $this->phoneNumber;
 
         return $user->save(false) && empty($this->getErrors()) ? $user : null;
+    }
+
+    public function loadUserById($id) {
+        $user = User::findById($id);
+        $editForm = new self;
+        $editForm->setAttributes($user->getAttributes());
+        $editForm->oldAttributes = $editForm->getAttributes();
+        return $editForm;
     }
 }

@@ -43,7 +43,7 @@ class UserController extends Controller
             Yii::error('Error user delete');
         }
         $url = Yii::$app->urlManager->createUrl('admin/user/index');
-        Yii::$app->getResponse()->redirect($url);
+        $this->redirect($url);
 
     }
     public function actionEdit($id) {
@@ -54,7 +54,7 @@ class UserController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->validate()):
             if ($model->edit($user->id)):
                 $url = Yii::$app->urlManager->createUrl('admin/user/index');
-                return Yii::$app->getResponse()->redirect($url);
+                return $this->redirect($url);
             else:
                 Yii::$app->session->setFlash('account_error', 'Error account edit.');
                 Yii::error('Error account edit');
@@ -79,7 +79,7 @@ class UserController extends Controller
 
             if ($user=$model->reg()):
                 $url = Yii::$app->urlManager->createUrl('admin/user/index');
-                return Yii::$app->getResponse()->redirect($url);
+                return $this->redirect($url);
             else:
 
                 Yii::$app->session->setFlash('error', 'Error sign up.');

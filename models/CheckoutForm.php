@@ -11,7 +11,8 @@ class CheckoutForm extends Model
     public $address;
     public $phoneNumber;
 
-    public function rules() {
+    public function rules()
+    {
         return [
             [['address', 'phoneNumber'], 'filter', 'filter' => 'trim'],
             [['address', 'phoneNumber'], 'required'],
@@ -20,7 +21,8 @@ class CheckoutForm extends Model
         ];
     }
 
-    public function proceedToCheckout($total) {
+    public function proceedToCheckout($total)
+    {
         $order = new Order();
         $userId = Yii::$app->user->identity->id;
         $order->user_id = $userId;
@@ -28,6 +30,6 @@ class CheckoutForm extends Model
         $order->phone_number = $this->phoneNumber;
         $order->total = $total;
 
-        return $order->save(false) && empty($this->getErrors()) ? $order : null;
+        return $order->save(false) && !$this->hasErrors() ? $order : null;
     }
 }

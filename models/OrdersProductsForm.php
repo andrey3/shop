@@ -31,7 +31,7 @@ class OrdersProductsForm extends Model
         $ordersProducts->price = $this->price;
         $ordersProducts->quantity = $this->quantity;
 
-        return $ordersProducts->save(false) && empty($this->getErrors()) ? $ordersProducts : null;
+        return $ordersProducts->save(false) && !$this->hasErrors() ? $ordersProducts : null;
     }
 
 }

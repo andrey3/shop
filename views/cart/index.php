@@ -15,7 +15,7 @@ echo $this->registerJsFile('@web/public/js/shoppingcartScript.js', ['position' =
 
 <h1>Shopping Cart</h1>
 <?php if ($products):?>
-    <form action="/cart/update/" method="post" name="cart">
+    <form action="<?= URL::toRoute('/cart/update/');?>" method="post" name="cart">
         <table width="680px" cellspacing="0" cellpadding="5" id="table">
             <thead>
                 <tr bgcolor="#ddd">
@@ -32,12 +32,12 @@ echo $this->registerJsFile('@web/public/js/shoppingcartScript.js', ['position' =
                 <?php foreach($products as $product): ?>
                     <tr class="tbody">
 <!--                        <input type="hidden" name="Form[products][id]" value="--><?//=$product['id'] ?><!--" />-->
-                        <td><img src="<?= Url::to("/images/products/{$product['image']}") ?>" alt="" /></td>
+                        <td><img src="<?= Url::to('/images/products/'.$product['image']) ?>" alt="" /></td>
                         <td><?=$product['description']?>></td>
                         <td align="center"><input name="Form[<?=$product['id'] ?>]" type="text" class="quantity" value="<?=$product['quantity']?>" style="width: 20px; text-align: right" /> </td>
                         <td align="right" class="price"><?=$product['price']?></td>
                         <td align="right" class="total">0</td>
-                        <td align="center"> <a href="/cart/delete/<?=$product['id']?>"><img src="/public/images/remove_x.gif" alt="remove" /><br />Remove</a> </td>
+                        <td align="center"> <a href="<? URL::toRoute('/cart/delete/'.$product['id']);?>"><img src="<?= Url::to('/public/images/remove_x.gif');?>" alt="remove" /><br />Remove</a> </td>
                     </tr>
                 <?php endforeach;?>
             </tbody>

@@ -36,7 +36,7 @@ class ProductController extends Controller
         $pages->pageSizeParam = false;
         $products = $query->offset($pages->offset)
             ->limit($pages->limit)
-            ->orderBy('id desc')
+            ->orderBy(['id' => SORT_DESC])
             ->all();
         return $this->render('index',
             [
@@ -57,7 +57,7 @@ class ProductController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->validate()):
             if ($model->edit($product->id)):
                 $url = Yii::$app->urlManager->createUrl('admin/product/index');
-                return Yii::$app->getResponse()->redirect($url);
+                return $this->redirect($url);
             else:
                 Yii::$app->session->setFlash('edit_error', 'Error product edit.');
                 Yii::error('Error product edit');

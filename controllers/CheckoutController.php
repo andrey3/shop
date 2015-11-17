@@ -8,7 +8,7 @@ use Yii;
 use yii\base\Controller;
 use app\models\CheckoutForm;
 
-class CheckoutController extends Controller
+class CheckoutController extends \yii\web\Controller
 {
     public function actionProceedToCheckout()
     {
@@ -38,8 +38,7 @@ class CheckoutController extends Controller
                         endif;
                     endif;
                 }
-                $url = Yii::$app->urlManager->createUrl('product/index');
-                return Yii::$app->getResponse()->redirect($url);
+                return $this->redirect('/product/index');
             endif;
         endif;
 

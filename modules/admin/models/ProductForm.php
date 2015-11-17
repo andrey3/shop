@@ -39,6 +39,6 @@ class ProductForm extends Model {
         $product->price = $this->price;
         $product->category_id = $this->categoryId;
 
-        return $product->save(false) && empty($this->getErrors()) ? $product : null;
+        return $product->save(false) && !$this->hasErrors() ? $product : null;
     }
 }

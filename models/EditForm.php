@@ -20,6 +20,8 @@ class EditForm extends Model {
     public $phoneNumber;
     public $oldAttributes;
 
+    protected $_user;
+
     public function rules() {
         return [
             [['name', 'email', 'address', 'phoneNumber'], 'filter', 'filter' => 'trim'],
@@ -36,10 +38,17 @@ class EditForm extends Model {
             [['name', 'email', 'address', 'phoneNumber'], 'safe']
         ];
     }
+    public function getUser($id)
+    {
+        if(!$this->_user instanceof User){
+            $this->_user = User::findById($id);
+        }
+        return $this->_user;
+    }
 
     public function edit($id) {
 
-        $user = User::findById($id);
+        $user = $this->getUser($id);
 
         $user->name = $this->name;
         $user->email = $this->email;
@@ -49,9 +58,9 @@ class EditForm extends Model {
         return $user->save(false) && empty($this->getErrors()) ? $user : null;
     }
 
-    public function loadUserById($id) {
-        $user = User::findById($id);
+    static public function loadUserById($id) {
         $editForm = new self;
+        $user = $editForm->getUser($id);
         $editForm->setAttributes($user->getAttributes());
         $editForm->oldAttributes = $editForm->getAttributes();
         return $editForm;

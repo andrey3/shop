@@ -67,6 +67,11 @@ class Order extends ActiveRecord
         ];
     }
 
+    public function formattedDate($format='d-m-Y H:i:s')
+    {
+        return date($format, $this->date);
+    }
+
     public static function findById($id)
     {
         return static::findOne([

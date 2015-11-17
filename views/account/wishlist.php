@@ -31,7 +31,7 @@ use yii\widgets\LinkPager;
                 <td><?=$order->total;?></td>
                 <td><?=$order->address;?></td>
                 <td><?=$order->phone_number;?></td>
-                <td><?=$order->date;?></td>
+                <td><?=$order->formattedDate();?></td>
                 <td><p><a href="<?= Url::toRoute("/account/details/$order->id") ?>">Details</a></p></td>
             </tr>
 

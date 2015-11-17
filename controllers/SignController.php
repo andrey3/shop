@@ -12,15 +12,17 @@ use app\models\LoginForm;
 use app\models\RegForm;
 use app\models\User;
 
-class SignController extends \yii\web\Controller {
+class SignController extends \yii\web\Controller
+{
 
-    public function actionReg() {
+    public function actionReg()
+    {
 
         $model = new RegForm();
 
         if ($model->load(Yii::$app->request->post()) && $model->validate()):
 
-            if ($user=$model->reg()):
+            if ($user = $model->reg()):
 
                 $auth = Yii::$app->authManager;
                 $adminRole = $auth->getRole('user');
@@ -43,7 +45,8 @@ class SignController extends \yii\web\Controller {
         );
     }
 
-    public function actionLogin() {
+    public function actionLogin()
+    {
 
         if (!Yii::$app->user->isGuest):
 
@@ -65,8 +68,8 @@ class SignController extends \yii\web\Controller {
         );
     }
 
-    public function actionLogout() {
-
+    public function actionLogout()
+    {
         Yii::$app->user->logout();
         return $this->redirect(['/site/index/']);
 

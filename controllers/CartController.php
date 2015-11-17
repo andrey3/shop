@@ -10,7 +10,6 @@ namespace app\controllers;
 
 use Yii;
 use app\models\Cart;
-use yii\base\Model;
 
 class CartController  extends \yii\web\Controller
 {
@@ -28,20 +27,18 @@ class CartController  extends \yii\web\Controller
     public function actionAdd($id)
     {
         Cart::add($id);
-        $url = Yii::$app->urlManager->createUrl('cart/index');
-        Yii::$app->getResponse()->redirect($url);
+        $this->redirect('/cart/index');
     }
 
     public function actionDelete($id)
     {
         Cart::delete($id);
-        $url = Yii::$app->urlManager->createUrl('cart/index');
-        Yii::$app->getResponse()->redirect($url);
+        $this->redirect('/cart/index');
     }
 
     public function actionUpdate() {
-        Cart::update();
-        $url = Yii::$app->urlManager->createUrl('cart/index');
-        Yii::$app->getResponse()->redirect($url);
+        $post = Yii::$app->request->post('Form');
+        Cart::update($post);
+        $this->redirect('/cart/index');
     }
 }

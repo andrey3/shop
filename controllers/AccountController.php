@@ -29,14 +29,12 @@ class AccountController extends \yii\web\Controller {
     }
 
     public function actionEdit($id) {
-
-        $model = new EditForm();
-        $model = $model->loadUserById($id);
+        $model = EditForm::loadUserById($id);
         $user = Yii::$app->user->getIdentity();
         if ($model->load(Yii::$app->request->post()) && $model->validate()):
             if ($model->edit($user->id)):
                 $url = Yii::$app->urlManager->createUrl('account/index');
-                return Yii::$app->getResponse()->redirect($url);
+                return $this->redirect($url);
             else:
                 Yii::$app->session->setFlash('account_error', 'Error account edit.');
                 Yii::error('Error account edit');
@@ -57,9 +55,6 @@ class AccountController extends \yii\web\Controller {
     {
         $user = User::findById(Yii::$app->user->identity->id);
         $orders = $user->orders;
-        foreach($orders as $order):
-            $order->date = date('d-m-Y H:i:s', $order->date);
-        endforeach;
 
         return $this->render(
             'wishlist',

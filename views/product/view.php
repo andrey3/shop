@@ -3,11 +3,12 @@
 /* @var $this yii\web\View */
 /* @var $product array */
 
+use yii\helpers\Url;
 
 ?>
 <h1>Product Detail</h1>
             <div class="content_half float_l">
-        	<a  rel="lightbox[portfolio]" href="images/product/10_l.jpg"><img src="/images/products/<?=$product->image?>" alt="image" /></a>
+        	<img src="<?= URL::to('/images/products/'.$product->image); ?>" alt="image" />
             </div>
             <div class="content_half float_r">
                 <table>
@@ -27,14 +28,10 @@
                         <td>Manufacturer:</td>
                         <td>Apple</td>
                     </tr>
-                    <tr>
-                    	<td>Quantity</td>
-                        <td><input type="text" value="1" style="width: 20px; text-align: right" /></td>
-                    </tr>
                 </table>
                 <div class="cleaner h20"></div>
 
-                <a href="/cart/add/<?=$product->id?>" class="addtocart"></a>
+                <a href="<?= URL::toRoute('/cart/add/'.$product->id); ?>" class="addtocart"></a>
 
 			</div>
             <div class="cleaner h30"></div>

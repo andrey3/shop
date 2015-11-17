@@ -30,10 +30,8 @@ class OrderController extends Controller
     public function actionIndex()
     {
         $orders = Order::getAll();
-        foreach($orders as $order):
-            $order->date = date('d-m-Y H:i:s', $order->date);
-        endforeach;
-        return $this->render('index',
+        return $this->render(
+            'index',
             [
                 'orders' => $orders
             ]);
@@ -52,7 +50,8 @@ class OrderController extends Controller
             $products[$key]['product_price'] = $value->price;
             $products[$key]['product_quantity'] = $value->quantity;
         endforeach;
-        return $this->render('details',
+        return $this->render(
+            'details',
             [
                 'products' => $products
             ]

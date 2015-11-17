@@ -38,8 +38,7 @@ class Cart extends Model {
         endif;
     }
 
-    public static function update() {
-        $post = Yii::$app->request->post('Form');
+    public static function update($post) {
         foreach ($post as $key=>$value):
             $session = Yii::$app->session;
             $last = $session['cart'] ?: [];
